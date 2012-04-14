@@ -1,6 +1,5 @@
 package com.sfeir.demo.devoxx.repository;
 
-import org.lilyproject.client.LilyClient;
 import org.lilyproject.repository.api.Record;
 import org.lilyproject.repository.api.RecordBuilder;
 import org.lilyproject.repository.api.RecordException;
@@ -16,5 +15,7 @@ public interface Session {
 	
 	public RecordTypeBuilder getRecordTypeBuilder() throws TypeException; 
 	
-	public Record findById(String id) throws RepositoryException, InterruptedException; 
+	public Record findById(String id) throws RepositoryException, InterruptedException;
+	
+	public void delete(String conferenceId) throws RepositoryException, InterruptedException;
 }

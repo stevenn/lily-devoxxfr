@@ -1,5 +1,6 @@
 package com.sfeir.demo.devoxx.resource;
 
+import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
@@ -17,6 +18,6 @@ public interface ConferenceResource {
     @Put
     public void update(final Conference conference);
     
-    //@Delete
-    //public Conference delete();
+    @Delete
+    public void deleteById();
 }

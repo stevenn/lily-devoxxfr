@@ -7,7 +7,6 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.LBHttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
 import org.lilyproject.repository.api.QName;
 import org.lilyproject.repository.api.Record;
 import org.lilyproject.repository.api.RecordException;
@@ -15,11 +14,9 @@ import org.lilyproject.repository.api.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.google.common.collect.Lists;
 import com.sfeir.demo.devoxx.dao.ConferenceDao;
 import com.sfeir.demo.devoxx.dao.mapper.impl.ConferenceMapperImpl;
 import com.sfeir.demo.devoxx.domain.Conference;
-import com.sfeir.demo.devoxx.domain.ConferenceType;
 import com.sfeir.demo.devoxx.repository.Session;
 
 @Repository
@@ -82,20 +79,9 @@ public class ConferenceDaoImpl implements ConferenceDao {
 	public List<Conference> getConferences() {
 		final SolrQuery solrQuery = new SolrQuery("conferenceType:[* TO *]");
 		QueryResponse response; 
-		List<Conference> conferences = Lists.newArrayList();
 		try {
 			response = lbHttpSolrServer.query(solrQuery);
-			for (final SolrDocument document : response.getResults()) {
-				Conference newConference = new Conference();
-				newConference.setTitle((String)document.getFieldValue("title"));
-				newConference.setDescription((String)document.getFieldValue("description"));
-				newConference.setSpeaker((String)document.getFieldValue("speaker"));
-				String conferenceTypeCode = (String)document.getFieldValue("conferenceType");
-				newConference.setConferenceType(ConferenceType.valueOf(conferenceTypeCode));
-				conferences.add(newConference);
-			}			
-			//return response.getBeans(Conference.class);
-			return conferences;
+			return new ConferenceMapperImpl().mapList(response);
 		} catch (SolrServerException e) {
 			e.printStackTrace();
 		}
@@ -108,5 +94,17 @@ public class ConferenceDaoImpl implements ConferenceDao {
 
 	public LBHttpSolrServer getLbHttpSolrServer() {
 		return lbHttpSolrServer;
+	}
+
+	public void delete(String conferenceId) {
+		try {
+			session.delete(conferenceId);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

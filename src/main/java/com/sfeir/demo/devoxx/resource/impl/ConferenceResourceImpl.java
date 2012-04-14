@@ -38,4 +38,10 @@ public class ConferenceResourceImpl extends ServerResource implements
 	public void update(final Conference conference) {
 		// TODO Auto-generated method stub
 	}
+	
+	public void deleteById() {
+		final String conferenceId = (String) getRequestAttributes().get(
+				CONFERENCE_ID);
+		conferenceDao.delete(conferenceId);
+	}
 }

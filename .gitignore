@@ -2,6 +2,8 @@
 nohup.out
 /README.html
 /.project
+/.settings
+/.git
 /.classpath
 .settings
-.gitignore
+/.gitignore

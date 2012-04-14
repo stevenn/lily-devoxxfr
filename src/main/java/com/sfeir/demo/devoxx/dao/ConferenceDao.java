@@ -11,4 +11,6 @@ public interface ConferenceDao {
 	public Conference findById(final String conferenceId);
 	
 	public List<Conference> getConferences();
+	
+	public void delete(String conferenceId);
 }

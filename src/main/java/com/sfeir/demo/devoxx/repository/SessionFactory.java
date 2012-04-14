@@ -49,4 +49,9 @@ public class SessionFactory implements FactoryBean, Session {
 		Preconditions.checkNotNull(id, "Could not retreive a record with a null identifier");
 		return lilyClient.getRepository().read(idGenerator.fromString(id));
 	}
+	
+	public void delete(String id) throws RepositoryException, InterruptedException {
+		Preconditions.checkNotNull(id, "Could not delete a record with a null identifier");
+		lilyClient.getRepository().delete(idGenerator.fromString(id));
+	}
 }
