@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<indexer xmlns:vote="com.sfeir.demo.devoxx">
+  <records>
+    <record matchNamespace="vote" matchName="Conference" matchVariant="*" vtags="last"/>
+    <record matchNamespace="vote" matchName="Vote" matchVariant="*" vtags="last"/>
+  </records>
+
+  <fields>
+    <field name="title" value="vote:title"/>
+    <field name="description" value="vote:description"/>
+    <field name="speaker" value="vote:speaker"/>
+    <field name="conferenceType" value="vote:conferenceType"/>
+
+    <field name="conference" value="vote:conference=>vote:title"/>
+    <field name="notation" value="vote:notation"/>
+    <field name="remarks" value="vote:remarks"/>
+
+  </fields>
+
+</indexer>

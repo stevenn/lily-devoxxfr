@@ -46,15 +46,10 @@
 		class="com.sfeir.demo.devoxx.resource.impl.ConferenceResourceImpl"
 		scope="prototype" autowire="byName" />
 		
-	<bean name="/v1/conferences/"
-		class="com.sfeir.demo.devoxx.resource.impl.ConferenceResourceImpl"
-		scope="prototype" autowire="byName" />		
-
-<!--  
+	<!-- Conference : Create -->
 	<bean name="/v1/conferences/"
 		class="com.sfeir.demo.devoxx.resource.impl.ConferencesResourceImpl"
-		scope="prototype" autowire="byName" />
--->		
+		scope="prototype" autowire="byName" />		
 
 </beans>
        						
