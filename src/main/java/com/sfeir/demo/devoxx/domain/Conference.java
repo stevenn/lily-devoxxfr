@@ -2,18 +2,24 @@ package com.sfeir.demo.devoxx.domain;
 
 import java.io.Serializable;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @SuppressWarnings("serial")
 @XStreamAlias("conference")
 public class Conference implements Serializable {
 
+	//@Field("title")
 	private volatile String title;
 	
+	//@Field("speaker")
 	private volatile String speaker;
 	
+	//@Field("description")
 	private volatile String description;
 	
+	//@Field("conferenceType")
 	private ConferenceType conferenceType;	
 
 	public Conference() {

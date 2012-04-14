@@ -35,8 +35,17 @@
 		<property name="zookeeperSessionTimeout" value="20000" />
 	</bean>
 
+	<bean id="queryEngine" class="com.sfeir.demo.devoxx.dao.query.QueryImpl">
+		<property name="solrServers">
+			<list>
+				<value>http://localhost:8983/solr</value>
+			</list>
+		</property>
+	</bean>
+
 	<bean id="conferenceDao" class="com.sfeir.demo.devoxx.dao.impl.ConferenceDaoImpl">
 		<property name="nameSpace" value="com.sfeir.demo.devoxx" />
+		<property name="lbHttpSolrServer" ref="queryEngine" />
 	</bean>
 
 	<!-- Rest APIs -->
@@ -45,11 +54,10 @@
 	<bean name="/v1/conferences/{conferenceId}"
 		class="com.sfeir.demo.devoxx.resource.impl.ConferenceResourceImpl"
 		scope="prototype" autowire="byName" />
-		
-	<!-- Conference : Create -->
+
+	<!-- Conference : Create and List -->
 	<bean name="/v1/conferences/"
 		class="com.sfeir.demo.devoxx.resource.impl.ConferencesResourceImpl"
-		scope="prototype" autowire="byName" />		
-
+		scope="prototype" autowire="byName" />
 </beans>
        						

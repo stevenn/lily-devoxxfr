@@ -1,5 +1,7 @@
 package com.sfeir.demo.devoxx.resource.impl;
 
+import java.util.List;
+
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +23,8 @@ public class ConferencesResourceImpl extends ServerResource implements Conferenc
 		this.conferenceDao = conferenceDao;
 	}
 
-	public Conference getConferences() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Conference> getConferences() {
+		return conferenceDao.getConferences();
 	}
 
 	public void add(final Conference conference) {
