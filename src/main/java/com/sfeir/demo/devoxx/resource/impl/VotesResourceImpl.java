@@ -32,12 +32,4 @@ public class VotesResourceImpl extends ServerResource implements VotesResource {
 				CONFERENCE_ID);
 		voteDao.create(vote, conferenceId);
 	}
-
-	public VoteDao getVoteDao() {
-		return voteDao;
-	}
-
-	public void setVoteDao(VoteDao voteDao) {
-		this.voteDao = voteDao;
-	}
 }

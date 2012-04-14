@@ -7,3 +7,4 @@ nohup.out
 /.classpath
 .settings
 /.gitignore
+target
