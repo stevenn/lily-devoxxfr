@@ -1,26 +1,33 @@
 package com.sfeir.demo.devoxx.domain;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("vote")
 public class Vote {
 
-	private Conference conference;
+	//private volatile Conference conference;
+	private volatile String conferenceId;
 	
 	private int notation;
 	
-	private String remarks;
+	private volatile String remarks;
 
-	public Vote(Conference conference, int notation, String remarks) {
+	public Vote() {
+	}
+
+	public Vote(String conferenceId, int notation, String remarks) {
 		super();
-		this.conference = conference;
+		this.conferenceId = conferenceId;
 		this.notation = notation;
 		this.remarks = remarks;
 	}
 
-	public Conference getConference() {
-		return conference;
+	public String getConferenceId() {
+		return conferenceId;
 	}
 
-	public void setConference(Conference conference) {
-		this.conference = conference;
+	public void setConferenceId(String conferenceId) {
+		this.conferenceId = conferenceId;
 	}
 
 	public int getNotation() {
@@ -44,7 +51,7 @@ public class Vote {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((conference == null) ? 0 : conference.hashCode());
+				+ ((conferenceId == null) ? 0 : conferenceId.hashCode());
 		result = prime * result + notation;
 		result = prime * result + ((remarks == null) ? 0 : remarks.hashCode());
 		return result;
@@ -59,10 +66,10 @@ public class Vote {
 		if (getClass() != obj.getClass())
 			return false;
 		Vote other = (Vote) obj;
-		if (conference == null) {
-			if (other.conference != null)
+		if (conferenceId == null) {
+			if (other.conferenceId != null)
 				return false;
-		} else if (!conference.equals(other.conference))
+		} else if (!conferenceId.equals(other.conferenceId))
 			return false;
 		if (notation != other.notation)
 			return false;
@@ -76,7 +83,7 @@ public class Vote {
 
 	@Override
 	public String toString() {
-		return "Vote [conference=" + conference + ", notation=" + notation
+		return "Vote [conferenceId=" + conferenceId + ", notation=" + notation
 				+ ", remarks=" + remarks + "]";
 	}
 }

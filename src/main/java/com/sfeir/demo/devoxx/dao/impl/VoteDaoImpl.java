@@ -7,6 +7,7 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.LBHttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
+import org.lilyproject.repository.api.Link;
 import org.lilyproject.repository.api.QName;
 import org.lilyproject.repository.api.Record;
 import org.lilyproject.repository.api.RecordException;
@@ -14,34 +15,34 @@ import org.lilyproject.repository.api.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sfeir.demo.devoxx.dao.ConferenceDao;
-import com.sfeir.demo.devoxx.dao.mapper.impl.ConferenceMapperImpl;
-import com.sfeir.demo.devoxx.domain.Conference;
+import com.google.common.collect.Lists;
+import com.sfeir.demo.devoxx.dao.VoteDao;
+import com.sfeir.demo.devoxx.dao.mapper.impl.VoteMapperImpl;
+import com.sfeir.demo.devoxx.domain.Vote;
 import com.sfeir.demo.devoxx.repository.Session;
 
 @Repository
-public class ConferenceDaoImpl implements ConferenceDao {
+public class VoteDaoImpl implements VoteDao {
 
 	private String nameSpace;
 
 	private Session session;
 	
 	private LBHttpSolrServer lbHttpSolrServer = null;
-
+	
 	@Autowired
-	public ConferenceDaoImpl(Session session) {
+	public VoteDaoImpl(Session session) {
 		this.session = session;
 	}
 
-	public void create(Conference conference) {
+	public void create(final Vote vote, final String conferenceId) {
 		/* @formatter:off */
 		try {
 			session.getRecordBuilder()
-					.recordType(new QName(nameSpace, "Conference"))
-					.field(new QName(nameSpace, "title"), conference.getTitle())
-					.field(new QName(nameSpace, "description"), conference.getDescription())
-					.field(new QName(nameSpace, "speaker"), conference.getSpeaker())
-					.field(new QName(nameSpace, "conferenceType"), conference.getConferenceType().toString())
+					.recordType(new QName(nameSpace, "Vote"))
+					.field(new QName(nameSpace, "conferences"), new Link(session.getRecordId(conferenceId)))
+					.field(new QName(nameSpace, "notation"), vote.getNotation())
+					.field(new QName(nameSpace, "remarks"), vote.getRemarks())
 					.create();
 		} catch (RecordException e) {
 			e.printStackTrace();
@@ -53,10 +54,10 @@ public class ConferenceDaoImpl implements ConferenceDao {
 		/* @formatter:on */
 	}
 
-	public Conference findById(String conferenceId) {
+	public Vote findById(String voteId) {
 		try {
-			Record record = session.findById(conferenceId);
-			return new ConferenceMapperImpl().map(record, nameSpace);
+			Record record = session.findById(voteId);
+			return new VoteMapperImpl().map(record, nameSpace);
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -65,21 +66,21 @@ public class ConferenceDaoImpl implements ConferenceDao {
 		return null;
 	}
 
-	public List<Conference> getConferences() {
-		final SolrQuery solrQuery = new SolrQuery("conferenceType:[* TO *]");
+	public List<Vote> getVotes() {
+		final SolrQuery solrQuery = new SolrQuery("notation:[* TO *]");
 		QueryResponse response; 
 		try {
 			response = lbHttpSolrServer.query(solrQuery);
-			return new ConferenceMapperImpl().mapList(response);
+			return new VoteMapperImpl().mapList(response);
 		} catch (SolrServerException e) {
 			e.printStackTrace();
 		}
 		return Collections.emptyList();
 	}
-	
-	public void delete(String conferenceId) {
+
+	public void delete(String voteId) {
 		try {
-			session.delete(conferenceId);
+			session.delete(voteId);
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,7 +88,7 @@ public class ConferenceDaoImpl implements ConferenceDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}	
+	}
 
 	public String getNameSpace() {
 		return nameSpace;
@@ -97,11 +98,19 @@ public class ConferenceDaoImpl implements ConferenceDao {
 		this.nameSpace = nameSpace;
 	}
 
-	public void setLbHttpSolrServer(LBHttpSolrServer lbHttpSolrServer) {
-		this.lbHttpSolrServer = lbHttpSolrServer;
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
 	}
 
 	public LBHttpSolrServer getLbHttpSolrServer() {
 		return lbHttpSolrServer;
+	}
+
+	public void setLbHttpSolrServer(LBHttpSolrServer lbHttpSolrServer) {
+		this.lbHttpSolrServer = lbHttpSolrServer;
 	}
 }

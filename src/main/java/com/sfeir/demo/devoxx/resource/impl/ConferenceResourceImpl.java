@@ -31,10 +31,6 @@ public class ConferenceResourceImpl extends ServerResource implements
 		return conferenceDao.findById(conferenceId);
 	}
 
-	public void create(final Conference conference) {
-		conferenceDao.create(conference);
-	}
-
 	public void update(final Conference conference) {
 		// TODO Auto-generated method stub
 	}

@@ -48,6 +48,11 @@
 		<property name="lbHttpSolrServer" ref="queryEngine" />
 	</bean>
 
+	<bean id="voteDao" class="com.sfeir.demo.devoxx.dao.impl.VoteDaoImpl">
+		<property name="nameSpace" value="com.sfeir.demo.devoxx" />
+		<property name="lbHttpSolrServer" ref="queryEngine" />
+	</bean>
+
 	<!-- Rest APIs -->
 
 	<!-- Conference : Read -->
@@ -59,5 +64,16 @@
 	<bean name="/v1/conferences/"
 		class="com.sfeir.demo.devoxx.resource.impl.ConferencesResourceImpl"
 		scope="prototype" autowire="byName" />
+		
+	<!-- Vote : Read -->
+	<bean name="/v1/votes/{voteId}"
+		class="com.sfeir.demo.devoxx.resource.impl.VoteResourceImpl"
+		scope="prototype" autowire="byName" />
+
+	<!-- Vote : Create and List -->
+	<bean name="/v1/conferences/{conferenceId}/votes/"
+		class="com.sfeir.demo.devoxx.resource.impl.VotesResourceImpl"
+		scope="prototype" autowire="byName" />
+		
 </beans>
        						

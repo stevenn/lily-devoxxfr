@@ -11,7 +11,7 @@
     <field name="speaker" value="vote:speaker"/>
     <field name="conferenceType" value="vote:conferenceType"/>
 
-    <field name="conference" value="vote:conference=>vote:title"/>
+    <field name="conference" value="vote:conferences"/>
     <field name="notation" value="vote:notation"/>
     <field name="remarks" value="vote:remarks"/>
 

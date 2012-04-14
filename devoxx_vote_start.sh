@@ -5,7 +5,7 @@ LILY_VERSION="1.1.2"
 LILY_DIR_NAME="lily-$LILY_VERSION"
 LILY_HOME="$DIR_APPLICATIONS/$LILY_DIR_NAME"
 LILY_BIN="$LILY_HOME/bin"
-RESOURCES="lily-devoxx/src/main/resources"
+RESOURCES="src/main/resources"
 
 SOLR_SCHEMA_FILE="$RESOURCES/devoxx_vote_solr_schema.xml"
 LILY_SCHEMA_FILE="$RESOURCES/devoxx_vote.json"
@@ -15,7 +15,7 @@ SOLR_URL="http://localhost:8983/solr"
 
 $LILY_BIN/launch-test-lily -c 1 -s $SOLR_SCHEMA_FILE &
 
-sleep 60
+sleep 30
 
 $LILY_BIN/lily-import $LILY_SCHEMA_FILE
 

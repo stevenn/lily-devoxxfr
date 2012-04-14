@@ -2,8 +2,6 @@ package com.sfeir.demo.devoxx.domain;
 
 import java.io.Serializable;
 
-import org.apache.solr.client.solrj.beans.Field;
-
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @SuppressWarnings("serial")

@@ -24,8 +24,8 @@
       scope: "versioned"
     },
     {
-      name: "vote$conference",
-      valueType: "LIST<LINK>",
+      name: "vote$conferences",
+      valueType: "LINK",
       scope: "versioned"
     },
     {
@@ -52,7 +52,7 @@
     {
       name: "vote$Vote",
       fields: [
-        {name: "vote$conference", mandatory: true },
+        {name: "vote$conferences", mandatory: true },
         {name: "vote$notation", mandatory: true },
         {name: "vote$remarks", mandatory: false }
       ]

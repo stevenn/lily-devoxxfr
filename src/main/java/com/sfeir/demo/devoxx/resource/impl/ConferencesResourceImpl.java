@@ -19,7 +19,6 @@ public class ConferencesResourceImpl extends ServerResource implements Conferenc
 	
 	@Autowired
 	public ConferencesResourceImpl(ConferenceDao conferenceDao) {
-		super();
 		this.conferenceDao = conferenceDao;
 	}
 

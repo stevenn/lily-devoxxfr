@@ -5,6 +5,7 @@ import org.lilyproject.repository.api.IdGenerator;
 import org.lilyproject.repository.api.Record;
 import org.lilyproject.repository.api.RecordBuilder;
 import org.lilyproject.repository.api.RecordException;
+import org.lilyproject.repository.api.RecordId;
 import org.lilyproject.repository.api.RecordTypeBuilder;
 import org.lilyproject.repository.api.RepositoryException;
 import org.lilyproject.repository.api.TypeException;
@@ -53,5 +54,9 @@ public class SessionFactory implements FactoryBean, Session {
 	public void delete(String id) throws RepositoryException, InterruptedException {
 		Preconditions.checkNotNull(id, "Could not delete a record with a null identifier");
 		lilyClient.getRepository().delete(idGenerator.fromString(id));
+	}
+	
+	public RecordId getRecordId(String identifier) {
+		return idGenerator.fromString(identifier);
 	}
 }

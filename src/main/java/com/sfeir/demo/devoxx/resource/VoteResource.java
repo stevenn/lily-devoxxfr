@@ -4,14 +4,14 @@ import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
 
-import com.sfeir.demo.devoxx.domain.Conference;
+import com.sfeir.demo.devoxx.domain.Vote;
 
-public interface ConferenceResource {	
+public interface VoteResource {
     @Get
-    public Conference findById();
+    public Vote findById();
         
     @Put
-    public void update(final Conference conference);
+    public void update(final Vote vote);
     
     @Delete
     public void deleteById();
