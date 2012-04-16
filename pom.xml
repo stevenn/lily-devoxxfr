@@ -250,4 +250,22 @@
 
 	</build>
 
+  <repositories>
+    <repository>
+      <id>default</id>
+      <name>Maven Repository Switchboard</name>
+      <layout>default</layout>
+      <url>http://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+
+    <repository>
+      <id>lilyproject</id>
+      <name>Lily Maven repository</name>
+      <url>http://lilyproject.org/maven/maven2/deploy/</url>
+    </repository>
+  </repositories>
+
 </project>
