@@ -266,6 +266,11 @@
       <name>Lily Maven repository</name>
       <url>http://lilyproject.org/maven/maven2/deploy/</url>
     </repository>
+
+    <repository>
+      <id>restlet</id>
+      <url>http://maven.restlet.org/</url>
+    </repository>
   </repositories>
 
 </project>
