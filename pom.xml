@@ -9,7 +9,7 @@
 	<description>Lily demo for the Devoxx France 2012</description>
 
 	<properties>
-		<version.lily>1.1.2</version.lily>
+		<version.lily>1.2</version.lily>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<restlet.version>2.1-M7</restlet.version>
