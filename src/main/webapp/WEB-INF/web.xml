@@ -5,6 +5,10 @@
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
 
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+
 	<!-- Context Parameters -->
 	<context-param>
 		<param-name>org.restlet.component</param-name>

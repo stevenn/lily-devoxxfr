@@ -15,7 +15,6 @@ import org.lilyproject.repository.api.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.google.common.collect.Lists;
 import com.sfeir.demo.devoxx.dao.VoteDao;
 import com.sfeir.demo.devoxx.dao.mapper.impl.VoteMapperImpl;
 import com.sfeir.demo.devoxx.domain.Vote;
